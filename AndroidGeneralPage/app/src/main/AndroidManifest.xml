@@ -19,8 +19,11 @@
         <activity
             android:name=".ExampleActivity"
             android:label="演示Activity" />
-        <activity android:name=".MyFragmentActivity"
-            android:label="演示Fragment"></activity>
+        <activity
+            android:name=".MyFragmentActivity"
+            android:label="演示Fragment" />
+        <activity android:name=".CustomViewActivity"
+            android:label="自定义布局"></activity>
     </application>
 
 </manifest>

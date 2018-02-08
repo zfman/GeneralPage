@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button activityButton;
     Button fragmentButton;
+    Button customButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +22,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void inits() {
         activityButton=findViewById(R.id.bt_activity);
         fragmentButton=findViewById(R.id.bt_fragment);
+        customButton=findViewById(R.id.bt_customview);
 
         activityButton.setOnClickListener(this);
         fragmentButton.setOnClickListener(this);
+        customButton.setOnClickListener(this);
     }
 
     @Override
@@ -36,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bt_fragment:
                 Intent intent2=new Intent(MainActivity.this,MyFragmentActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.bt_customview:
+                Intent intent3=new Intent(MainActivity.this,CustomViewActivity.class);
+                startActivity(intent3);
                 break;
         }
     }
