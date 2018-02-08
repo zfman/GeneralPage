@@ -56,7 +56,7 @@ public class ExampleActivity extends BaseActivity {
     }
 }
 ```
-如果你用的是`Activity`，那么你要保证你的初始化方法都在`onViewCreated()`方法中，并且在初始化前调用一下父类的`onViewCreated()`方法，之后就可以尽情的调用`ViewHelper`对象的方法了，现在`Fragment`的代码是这个样子的：
+如果你用的是`Fragment`，那么你要保证你的初始化方法都在`onViewCreated()`方法中，并且在初始化前调用一下父类的`onViewCreated()`方法，之后就可以尽情的调用`ViewHelper`对象的方法了，现在`Fragment`的代码是这个样子的：
 ```java
 public class TabFragment1 extends BaseFragment {
 
