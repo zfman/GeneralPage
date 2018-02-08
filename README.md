@@ -231,6 +231,7 @@ showLoadingView()
 ```
 
 自定义布局时，自定义页面的根`View`必须为LinearLayout且`ID`必须为以下值：
+
 | 序号 | 页面 | `id` |
 |---|---|---|
 |1 | 加载页面 | `layout_loading` |
