@@ -1,10 +1,11 @@
 # GeneralPage
 
-该工具是对无数据页面、加载页面、异常页面进行简单的封装，它支持的页面：
+该工具是对无数据页面、加载页面、异常页面进行简单的封装，它支持的功能：
 
 - 空数据页面
 - 加载异常页面
 - 正在加载页面
+- 支持处理空数据页面、加载异常页面的点击事件
 
 版本特性:
 - v1.0.0（2018/2/8）
@@ -56,6 +57,7 @@ public class ExampleActivity extends BaseActivity {
     }
 }
 ```
+
 如果你用的是`Fragment`，那么你要保证你的初始化方法都在`onViewCreated()`方法中，并且在初始化前调用一下父类的`onViewCreated()`方法，之后就可以尽情的调用`ViewHelper`对象的方法了，现在`Fragment`的代码是这个样子的：
 ```java
 public class TabFragment1 extends BaseFragment {
@@ -82,6 +84,37 @@ public class TabFragment1 extends BaseFragment {
 
 }
 ```
+
+这两个基类已经实现了`OnViewHelperListener`接口，如果需要处理空数据页面、异常页面的点击事件，可以重写`onLoading()`方法即可,该方法被触发后将自动转换到Loading状态，示例代码如下：
+```java
+public class TabFragment2 extends BaseFragment {
+
+    View mView;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mView = inflater.inflate(R.layout.fragment_tab2, container, false);
+        return mView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        inits();
+    }
+
+    private void inits() {
+        getViewHelper().showErrorView("网络连接错误");
+    }
+
+    @Override
+    public void onLoading() {
+        Toast.makeText(getActivity(),"重新加载中..",Toast.LENGTH_SHORT).show();
+    }
+}
+```
+
 ### 不使用基类
 BaseActivity以及BaseFragment让整个过程简单了一点，如果你不想使用BaseActivity以及BaseFragment，那么也是可以的。
 
@@ -138,13 +171,87 @@ public class TabFragment1 extends Fragment {
 }
 ```
 
+如果需要监听空数据页面、异常页面的点击事件，Activity的做法如下：
+```java
+public class ExampleActivity extends AppCompatActivity implements OnViewHelperListener{
+
+    private ViewHelper mViewHelper;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_example);
+        //获取View以及初始化ViewHelper
+        View view=((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        mViewHelper=new ViewHelper(view);
+        
+        inits();
+    }
+
+    private void inits() {
+    	mViewHelper.setOnViewHelperListener(this);
+        //加载页面
+        mViewHelper.showErrorView("网络连接错误");
+    }
+    
+    @Override
+    public void onLoading() {
+        Toast.makeText(getActivity(),"重新加载中..",Toast.LENGTH_SHORT).show();
+    }
+}
+```
+
+Fragment的做法如下：
+```java
+public class TabFragment2 extends Fragment implements OnViewHelperListener{
+
+    View mView;
+    ViewHelper mViewHelper;
+    
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mView = inflater.inflate(R.layout.fragment_tab1, container, false);
+        mViewHelper=new ViewHelper(mView);
+        return mView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        inits();
+    }
+
+    private void inits() {
+        mViewHelper.showErrorView("网络连接错误");
+    }
+    
+    @Override
+    public void onLoading() {
+        Toast.makeText(getActivity(),"重新加载中..",Toast.LENGTH_SHORT).show();
+    }
+}
+```
+
 ### API
 
 ViewHelper是核心类，在使用前需要初始化(使用基类则不需要)：
-
 ```java
 mViewHelper=new ViewHelper(mView);
 ```
+
+为其设置点击监听器，以实现加载失败后重新加载的功能(使用基类则不需要):
+```java
+mViewHelper.setOnViewHelperListener(this);
+```
+
+重写onLoading()方法
+```java
+@Override
+    public void onLoading() {
+        Toast.makeText(getActivity(),"重新加载中..",Toast.LENGTH_SHORT).show();
+    }
+```
+
 提供四个方法：
 ```java
 //调用后将隐藏提示布局
