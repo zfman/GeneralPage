@@ -8,12 +8,13 @@
 
 版本特性:
 - v1.0.0（2018/2/8）
- 只支持现有的样式，不支持自定义；
 需要在XML中引入一个布局；
 提供Fragment与Activity的基类，可以实现快速接入；
 
 ### 运行效果
-[Demo运行效果](https://github.com/zfman/TimetableView/wiki/Demo%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C)  [下载Demo App](https://raw.githubusercontent.com/zfman/TimetableView/master/extras/TimetableSample.apk)
+[Demo运行效果](https://github.com/zfman/GeneralPage/wiki/Demo%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C) 
+
+[下载Demo App](https://raw.githubusercontent.com/zfman/GeneralPage/master/extras/demo.apk)
 
 
 ### 简单使用
@@ -56,7 +57,7 @@ public class ExampleActivity extends BaseActivity {
 }
 ```
 如果你用的是`Activity`，那么你要保证你的初始化方法都在`onViewCreated()`方法中，并且在初始化前调用一下父类的`onViewCreated()`方法，之后就可以尽情的调用`ViewHelper`对象的方法了，现在`Fragment`的代码是这个样子的：
-```
+```java
 public class TabFragment1 extends BaseFragment {
 
     View mView;
@@ -167,7 +168,7 @@ showLoadingView()
 
 上文说了，我们要引用`helper_layout`，那么这个文件是什么？源码如下：
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -186,7 +187,7 @@ showLoadingView()
 具体步骤如下：
 - 创建一个布局文件 `custom_helper_layout.xml`，其代码如下：
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -204,7 +205,7 @@ showLoadingView()
 </LinearLayout>
 ```
 以下是`custom_helper_loading.xml`的内容
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_loading"
@@ -225,7 +226,7 @@ showLoadingView()
 </LinearLayout>
 ```
 最后在引用布局的时候使用自定义的布局即可，示例如下：
-```
+```xml
 <include layout="@layout/custom_helper_layout"/>
 ```
 
