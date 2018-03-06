@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidGeneralPage.iml" filepath="$PROJECT_DIR$/AndroidGeneralPage.iml" />
+      <module fileurl="file://D:\resource\workspace\androidhome2\AndroidGeneralPage\AndroidGeneralPage.iml" filepath="D:\resource\workspace\androidhome2\AndroidGeneralPage\AndroidGeneralPage.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\resource\workspace\androidhome2\AndroidGeneralPage\app\app.iml" filepath="D:\resource\workspace\androidhome2\AndroidGeneralPage\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/generalpage/generalpage.iml" filepath="$PROJECT_DIR$/generalpage/generalpage.iml" />
+      <module fileurl="file://D:\resource\workspace\androidhome2\AndroidGeneralPage\generalpage\generalpage.iml" filepath="D:\resource\workspace\androidhome2\AndroidGeneralPage\generalpage\generalpage.iml" />
     </modules>
   </component>
 </project>

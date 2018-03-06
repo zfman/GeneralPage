@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 /**
  * Created by Liu ZhuangFei on 2018/2/6.
  */
@@ -20,6 +19,8 @@ public class ViewHelper implements View.OnClickListener {
     private LinearLayout containerLayout;
 
     private TextView errorTextView;
+
+    private TextView emptyTextView;
 
     private OnViewHelperListener onViewHelperListener;
 
@@ -39,6 +40,7 @@ public class ViewHelper implements View.OnClickListener {
         containerLayout=mView.findViewById(R.id.helper_container);
 
         errorTextView=mView.findViewById(R.id.textview_error);
+        emptyTextView=mView.findViewById(R.id.textview_empty);
 
         if(check()){
             emptyLayout.setOnClickListener(this);
@@ -55,13 +57,20 @@ public class ViewHelper implements View.OnClickListener {
         }
     }
 
-    public void showEmptyView() {
+    public void showEmptyView(String tip) {
+        if(tip!=null&&emptyTextView!=null){
+            emptyTextView.setText(tip);
+        }
         if (check()) {
             hideAllViews();
             containerLayout.setVisibility(View.VISIBLE);
             mView.setVisibility(View.VISIBLE);
             emptyLayout.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void showEmptyView() {
+        showEmptyView(null);
     }
 
     public void showErrorView(String msg) {
@@ -98,7 +107,6 @@ public class ViewHelper implements View.OnClickListener {
         int id = view.getId();
         if (id == R.id.layout_error||id==R.id.layout_empty) {
             if (onViewHelperListener != null) {
-                showLoadingView();
                 onViewHelperListener.onLoading();
             }
         }
