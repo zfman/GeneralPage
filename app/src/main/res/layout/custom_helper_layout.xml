@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/helper_container"
+    android:orientation="vertical">
+
+    <include layout="@layout/custom_helper_loading" />
+
+    <include layout="@layout/helper_error" />
+
+    <include layout="@layout/helper_empty" />
+
+
+</LinearLayout>
