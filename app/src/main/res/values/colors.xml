@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#FB3848</color>
-    <color name="colorPrimaryDark">#FB3848</color>
-    <color name="colorAccent">#FB3848</color>
-
-    <color name="app_panel_bg">#EDF0F2</color>
-</resources>
